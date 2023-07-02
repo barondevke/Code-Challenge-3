@@ -6,9 +6,13 @@ fetch(' http://localhost:3000/films')
 
 function showAllMovies(data) {
     data.forEach(element => {
-        let movieId = element.id
+        let movie = document.createElement('div')
+        movie.classList.add('movie')
+        document.getElementById('Firstmovie').appendChild(movie)
+
         let movieTitle = document.createElement('h2')
         movieTitle.innerText = element.title
+
 
         let poster = document.createElement('img')
         poster.src = element.poster
@@ -37,12 +41,12 @@ function showAllMovies(data) {
         moreDetails.innerText = 'More Details'
         moreDetails.classList.add('more-details')
 
-        document.getElementById('Firstmovie').appendChild(movieTitle)
-        document.getElementById('Firstmovie').appendChild(poster)
-        document.getElementById('Firstmovie').appendChild(movieRuntime)
-        document.getElementById('Firstmovie').appendChild(movieShowtime)
-        document.getElementById('Firstmovie').appendChild(movieTickets)
-        document.getElementById('Firstmovie').appendChild(buyBtn)
+        movie.appendChild(movieTitle)
+        movie.appendChild(poster)
+        movie.appendChild(movieRuntime)
+        movie.appendChild(movieShowtime)
+        movie.appendChild(movieTickets)
+        movie.appendChild(buyBtn)
 
 
     })
