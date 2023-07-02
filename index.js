@@ -28,21 +28,8 @@ function showAllMovies(data) {
         buyBtn.classList.add('buyBtn')
         buyBtn.innerHTML = 'Buy Ticket'
         buyBtn.addEventListener('click', () => {
-            let movieTicketsContainer = document.querySelector('.movieTickets')
-
-            fetch(` http://localhost:3000/films/${movieId}`, {
-                method: 'PATCH',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    'tickets_sold': movieTicketsContainer.likes - 1
-                })
-            })
-                .then(res => res.json())
-                .then(json => {
-                    movieTickets.innerText = `Tickets left : ${json.capacity - json.tickets_sold}`
-                })
+            movieTickets.tickets--
+            movieTickets.innerText = `Tickets left: ${movieTickets.tickets}`
         })
 
 
