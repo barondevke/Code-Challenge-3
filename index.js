@@ -1,8 +1,8 @@
-fetch(' http://localhost:3000/films/1')
+fetch(' http://localhost:3000/films')
     .then((res) => res.json())
-    .then((json) => showAllMovie(json))
+    .then((json) => showAllMovies(json))
 
-
+let availableMovieTickets = 0
 
 function showAllMovies(data) {
     data.forEach(element => {
@@ -18,33 +18,32 @@ function showAllMovies(data) {
         let movieShowtime = document.createElement('h3')
         movieShowtime.innerText = element.showtime
 
-        let availableMovieTickets = element.capacity - element.tickets_sold
-        let movieTickets = document.createElement('h4')
+        availableMovieTickets = element.capacity - element.tickets_sold
+        let movieTickets = document.createElement('h3')
         movieTickets.innerHTML = `Tickets left : ${availableMovieTickets}`
 
         let buyBtn = document.createElement('button')
+        buyBtn.classList.add('buyBtn')
         buyBtn.innerHTML = 'Buy Ticket'
 
 
-        const moreDetails = document.createElement('button')
-        moreDetails.onclick = () => {
-            document.getElementById('Firstmovie').appendChild(movieRuntime)
-            document.getElementById('Firstmovie').appendChild(movieShowtime)
-            document.getElementById('Firstmovie').appendChild(movieTickets)
-
-        }
+        let moreDetails = document.createElement('button')
+        moreDetails.innerText = 'More Details'
+        moreDetails.classList.add('more-details')
 
         document.getElementById('Firstmovie').appendChild(movieTitle)
         document.getElementById('Firstmovie').appendChild(poster)
-        document.getElementById('Firstmovie').appendChild(moreDetails)
-
-
+        document.getElementById('Firstmovie').appendChild(movieRuntime)
+        document.getElementById('Firstmovie').appendChild(movieShowtime)
+        document.getElementById('Firstmovie').appendChild(movieTickets)
         document.getElementById('Firstmovie').appendChild(buyBtn)
 
 
-
-
-    });
+    })
 
 
 }
+
+document.addEventListener('click')
+
+
