@@ -1,10 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Tai+Viet&display=swap");
 
+body {
+    background-color: #000000;
+}
+
+button {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: "Noto Sans Tai Viet", sans-serif;
+    border: 0;
+    font-size: 20px;
+    margin: 0 30%;
+    border-radius: 5%;
+
+
+}
+
+button:hover {
+    color: black;
+    background-color: #FFFFFF;
+}
+
 img {
     width: 400px;
     height: 400px;
     border-radius: 5%;
 }
+
+
 
 .container {
     display: flex;
@@ -12,10 +35,18 @@ img {
     justify-content: center;
     font-family: "Noto Sans Tai Viet", sans-serif;
 
+
+
+}
+
+.movie:hover {
+    transform: scale(1.1);
 }
 
 .movie {
     margin: 1%;
+    color: #FFFFFF;
+    transition: transform .2s;
 }
 
 

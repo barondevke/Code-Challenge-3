@@ -17,10 +17,10 @@ function showAllMovies(data) {
         let poster = document.createElement('img')
         poster.src = element.poster
 
-        let movieRuntime = document.createElement('h3')
+        let movieRuntime = document.createElement('h4')
         movieRuntime.innerText = `${element.runtime} minutes`
 
-        let movieShowtime = document.createElement('h3')
+        let movieShowtime = document.createElement('h4')
         movieShowtime.innerText = element.showtime
 
         let movieTickets = document.createElement('div')
