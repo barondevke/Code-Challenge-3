@@ -2,10 +2,11 @@ fetch(' http://localhost:3000/films')
     .then((res) => res.json())
     .then((json) => showAllMovies(json))
 
-let availableMovieTickets = 0
+
 
 function showAllMovies(data) {
     data.forEach(element => {
+        let movieId = element.id
         let movieTitle = document.createElement('h2')
         movieTitle.innerText = element.title
 
@@ -18,13 +19,31 @@ function showAllMovies(data) {
         let movieShowtime = document.createElement('h3')
         movieShowtime.innerText = element.showtime
 
-        availableMovieTickets = element.capacity - element.tickets_sold
-        let movieTickets = document.createElement('h3')
-        movieTickets.innerHTML = `Tickets left : ${availableMovieTickets}`
+        let movieTickets = document.createElement('div')
+        movieTickets.classList.add('movieTickets')
+        movieTickets.tickets = element.capacity - element.tickets_sold
+        movieTickets.innerText = `Tickets left: ${movieTickets.tickets}`
 
         let buyBtn = document.createElement('button')
         buyBtn.classList.add('buyBtn')
         buyBtn.innerHTML = 'Buy Ticket'
+        buyBtn.addEventListener('click', () => {
+            let movieTicketsContainer = document.querySelector('.movieTickets')
+
+            fetch(` http://localhost:3000/films/${movieId}`, {
+                method: 'PATCH',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    'tickets_sold': movieTicketsContainer.likes - 1
+                })
+            })
+                .then(res => res.json())
+                .then(json => {
+                    movieTickets.innerText = `Tickets left : ${json.capacity - json.tickets_sold}`
+                })
+        })
 
 
         let moreDetails = document.createElement('button')
@@ -42,8 +61,8 @@ function showAllMovies(data) {
     })
 
 
-}
 
-document.addEventListener('click')
+
+}
 
 
